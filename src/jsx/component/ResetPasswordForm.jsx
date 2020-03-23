@@ -96,6 +96,7 @@ class ResetPasswordForm extends Component {
               defaultValue={confirmNewPassword}
               onChange={this.onInputChange}
               autoFocus={true}
+              hasError={true}
             />
           </div>
 

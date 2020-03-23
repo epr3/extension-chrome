@@ -9,6 +9,7 @@ const LoginField = ({
   onChange,
   defaultValue,
   autoFocus,
+  hasError,
 }) => {
   return (
     <input
@@ -18,7 +19,7 @@ const LoginField = ({
       type={type}
       onChange={onChange}
       defaultValue={defaultValue}
-      className="pia-form-control form-control"
+      className={`pia-form-control form-control ${hasError ? 'is-invalid' : ''}`}
       // If an autofocus action can be anticipated, it
       // has been said by users to not break accessibility
       // eslint-disable-next-line jsx-a11y/no-autofocus
@@ -35,12 +36,14 @@ LoginField.propTypes = {
   autocomplete: PropType.string,
   defaultValue: PropType.string,
   autoFocus: PropType.bool,
+  hasError: PropType.bool,
 };
 
 LoginField.defaultProps = {
   autoFocus: false,
   autocomplete: '',
   defaultValue: '',
+  hasError: false,
 };
 
 export default LoginField;

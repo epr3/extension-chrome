@@ -98,11 +98,23 @@
   "PasswordPlaceholder": {
     "message": "Password"
   },
+  "CurrentPasswordPlaceholder": {
+    "message": "Current password"
+  },
+  "NewPasswordPlaceholder": {
+    "message": "New password"
+  },
+  "ConfirmNewPasswordPlaceholder": {
+    "message": "Confirm new password"
+  },
   "TryAgain": {
     "message": "Try again"
   },
   "LoginText": {
     "message": "Login"
+  },
+  "GoBackText": {
+    "message": "Go back"
   },
   "SelectRegionText": {
     "message": "Select a region"

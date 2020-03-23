@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import LoginField from 'component/LoginField';
-import onSubmit from 'eventhandler/templates/login/onSubmit';
-import RememberMeCheckbox from 'component/checkbox/RememberMeCheckbox';
 import listenOnline from 'hoc/listenOnline';
 
-class LoginForm extends Component {
+class ResetPasswordForm extends Component {
   constructor(props) {
     super(props);
 
@@ -16,7 +13,11 @@ class LoginForm extends Component {
 
     // properties
     this.i18n = this.app.util.i18n;
-    this.user = this.app.util.user;
+    this.state = {
+      currentPassword: '',
+      newPassword: '',
+      confirmNewPassword: '',
+    };
 
     // bindings
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -25,38 +26,38 @@ class LoginForm extends Component {
 
   onInputChange({ target: { value, name } }) {
     switch (name) {
-      case 'username': {
-        this.user.setUsername(value);
+      case 'currentPassword': {
+        this.setState({ currentPassword: value });
         break;
       }
 
-      case 'password': {
-        this.user.setPassword(value);
+      case 'newPassword': {
+        this.setState({ newPassword: value });
+        break;
+      }
+
+      case 'confirmNewPassword': {
+        this.setState({ confirmNewPassword: value });
         break;
       }
 
       default: {
-        debug(`invalid name for login field: ${value}`);
+        debug(`invalid name for reset password field: ${value}`);
       }
     }
   }
 
-  handleSubmit(event) {
-    return onSubmit(this.renderer, this.app, event);
-  }
-
-  resetPasswordURL() {
-    return `https://${this.i18n.domainMap.get(this.i18n.locale)}/pages/reset-password`;
+  handleSubmit() {
+    alert('Task complete!');
   }
 
   render() {
     const {
-      app: { util: { user } },
-      props: { renderTemplateFunc }
+      state: { currentPassword, newPassword, confirmNewPassword }
     } = this;
 
     return (
-      <form id="login" onSubmit={this.handleSubmit}>
+      <form id="reset-password" onSubmit={this.handleSubmit}>
         <div className="col-xs-1" />
 
         <div className="col-xs-10">
@@ -65,10 +66,10 @@ class LoginForm extends Component {
           <div className="form-group">
             <LoginField
               autocomplete="off"
-              name="username"
-              type="text"
-              localeKey="UsernamePlaceholder"
-              defaultValue={user.getUsername()}
+              name="currentPassword"
+              type="password"
+              localeKey="CurrentPasswordPlaceholder"
+              defaultValue={currentPassword}
               onChange={this.onInputChange}
               autoFocus={true}
             />
@@ -77,32 +78,36 @@ class LoginForm extends Component {
           <div className="form-group">
             <LoginField
               autocomplete="off"
-              name="password"
+              name="newPassword"
               type="password"
-              localeKey="PasswordPlaceholder"
-              defaultValue={user.getPassword()}
+              localeKey="NewPasswordPlaceholder"
+              defaultValue={newPassword}
               onChange={this.onInputChange}
+              autoFocus={true}
             />
           </div>
 
           <div className="form-group">
-            <RememberMeCheckbox labelLocaleKey="RememberMe" />
+            <LoginField
+              autocomplete="off"
+              name="confirmNewPassword"
+              type="password"
+              localeKey="ConfirmNewPasswordPlaceholder"
+              defaultValue={confirmNewPassword}
+              onChange={this.onInputChange}
+              autoFocus={true}
+            />
           </div>
 
           <div className="form-group text-center">
             <button id="submit-form-button" type="submit" className="btn-success form-control">
-              { t('LoginText') }
+              { t('ResetPasswordText') }
             </button>
 
-            <div className="resetpw text-center">
-              <a
-                onClick={() => renderTemplateFunc('reset_password')}
-              >
-                { t('ResetPasswordText') }
-              </a>
-            </div>
+            <button type="button" className="btn-info form-control">
+              { t('GoBackText') }
+            </button>
 
-            <div className="loader login-loader hidden" />
           </div>
         </div>
       </form>
@@ -110,8 +115,4 @@ class LoginForm extends Component {
   }
 }
 
-LoginForm.propTypes = {
-  online: PropTypes.bool.isRequired,
-};
-
-export default listenOnline(LoginForm);
+export default listenOnline(ResetPasswordForm);

@@ -6,7 +6,7 @@ import CompanyLogo from '../component/CompanyLogo';
 import OfflineWarning from '../component/OfflineWarning';
 import listenOnline from 'hoc/listenOnline';
 
-export default function () {
+export default function (renderTemplateFunc) {
   class LoginTemplate extends Component {
     constructor(props) {
       super(props);
@@ -34,7 +34,7 @@ export default function () {
           <CompanyLogo />
 
           <div className="top-border">
-            <LoginForm />
+            <LoginForm renderTemplateFunc={renderTemplateFunc} />
           </div>
 
           <div className="top-border">

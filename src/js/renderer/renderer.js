@@ -10,13 +10,14 @@ import UncontrollableTemplate from 'templates/UncontrollableTemplate';
 import ChangelogTemplate from 'templates/ChangeLogTemplate';
 import DebugLogTemplate from 'templates/DebugLogTemplate';
 import BypassListTemplate from 'templates/BypassListTemplate';
+import ResetPasswordTemplate from 'templates/ResetPasswordTemplate';
 
 export default class Renderer {
   constructor() {
     this.currentTemplate = undefined;
     this.previousTemplate = undefined;
     this.templates = {
-      login: () => { return LoginTemplate(); },
+      login: () => { return LoginTemplate(this.renderTemplate); },
       authenticated: () => { return AuthenticatedTemplate(); },
       change_region: () => { return ChangeRegionTemplate(); },
       settings: () => { return SettingsTemplate(); },
@@ -26,6 +27,7 @@ export default class Renderer {
       changelog: () => { return ChangelogTemplate(); },
       debuglog: () => { return DebugLogTemplate(); },
       bypasslist: () => { return BypassListTemplate(); },
+      reset_password: () => { return ResetPasswordTemplate(this.renderTemplate); },
     };
 
     // bindings

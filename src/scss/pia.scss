@@ -325,3 +325,14 @@ a, a:active, a:focus, a:hover { color: #39b54a; }
     border-color: #dc3545;
   }
 }
+
+.invalid-feedback {
+  width: 100%;
+  margin-top: .25rem;
+  font-size: 80%;
+  color: #dc3545;
+}
+
+.mt-2 {
+  margin-top: 2rem !important;
+}

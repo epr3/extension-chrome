@@ -5,7 +5,7 @@ import CompanyLogo from '../component/CompanyLogo';
 import OfflineWarning from '../component/OfflineWarning';
 import listenOnline from 'hoc/listenOnline';
 
-export default function () {
+export default function (renderTemplateFunc) {
   class ResetPasswordTemplate extends Component {
     constructor(props) {
       super(props);
@@ -22,7 +22,7 @@ export default function () {
           <CompanyLogo />
 
           <div className="top-border">
-            <ResetPasswordForm />
+            <ResetPasswordForm renderTemplateFunc={renderTemplateFunc} />
           </div>
         </div>
       );

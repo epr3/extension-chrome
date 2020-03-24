@@ -52,7 +52,7 @@ class LoginForm extends Component {
   render() {
     const {
       app: { util: { user } },
-      props: { renderTemplateFunc }
+      props: { renderTemplateFunc },
     } = this;
 
     return (
@@ -111,7 +111,7 @@ class LoginForm extends Component {
 }
 
 LoginForm.propTypes = {
-  online: PropTypes.bool.isRequired,
+  renderTemplateFunc: PropTypes.func.isRequired,
 };
 
 export default listenOnline(LoginForm);

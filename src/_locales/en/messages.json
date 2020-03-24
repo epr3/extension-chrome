@@ -113,6 +113,9 @@
   "LoginText": {
     "message": "Login"
   },
+  "ChangePasswordText": {
+    "message": "Change password"
+  },
   "GoBackText": {
     "message": "Go back"
   },
